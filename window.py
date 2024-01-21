@@ -1,8 +1,9 @@
 import tkinter as tk
-
+from point import Point
+from line import Line
 
 class Window:
-	def __init__(self, width, height):
+	def __init__(self, width: int, height: int):
 		self.__root = tk.Tk()
 		# self.__root.geometry(f"{width}x{height}")
 		self.__root.title("Maze Solver")
@@ -27,4 +28,6 @@ class Window:
 	def close(self):
 		self.__running = False
 		
-
+	def draw_line(self, line: Line, fill_color: str):
+		line.draw(self.__c, fill_color)
+		
