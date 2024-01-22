@@ -31,3 +31,4 @@ class Window:
 	def draw_line(self, line: Line, fill_color: str):
 		line.draw(self.__c, fill_color)
 		
+	
