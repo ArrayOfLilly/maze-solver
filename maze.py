@@ -20,41 +20,46 @@ class Maze:
 		self.num_columns = num_columns
 		self.cell_size_x = cell_size_x
 		self.cell_size_y = cell_size_y
-		self.__win = window
-		self.__cells = []
+		self._win = window
+		self._cells = []
 		self._create_cells()
 		
 	def _create_cells(self):
 		rows = []
-		if self.num_rows * self.cell_size_y > self.__win.height \
-				or self.num_columns * self.cell_size_x > self.__win.width:
+		if self.num_rows * self.cell_size_y > self._win.height \
+				or self.num_columns * self.cell_size_x > self._win.width:
 			return
-		maze_start_x = (self.__win.width - self.num_columns * self.cell_size_x) / 2
-		maze_start_y = (self.__win.height - self.num_rows * self.cell_size_y) / 2
+		maze_start_x = (self._win.width - self.num_columns * self.cell_size_x) / 2
+		maze_start_y = (self._win.height - self.num_rows * self.cell_size_y) / 2
 		
 		for r in range(self.num_rows):
 			columns = []
 			for c in range(self.num_columns):
 				start = Point(maze_start_x + c * self.cell_size_x, maze_start_y + r * self.cell_size_y)
 				end = Point(maze_start_x + (c + 1) * self.cell_size_x, maze_start_y + (r + 1) * self.cell_size_y)
-				cell = Cell(self.__win, start, end, (1, 1, 1, 1))
+				cell = Cell(self._win, start, end, (1, 1, 1, 1))
 				columns.append(cell)
 			rows.append(columns.copy())
-		self.__cells = rows
-		print(f"Rows: {len(self.__cells)}, columns: {len(self.__cells[0])}")
+		self._cells = rows
 		self._draw_cells()
 		
 	def _draw_cells(self):
-		count = 0
-		for row in self.__cells:
-			count += 1
-			count1 = 0
+		for row in self._cells:
 			for cell in row:
-				count1 += 1
 				cell.draw("OrangeRed3")
-				self._animate()
+				self._animate(0.7)
 				
-	def _animate(self):
-		sleep(1)
-		self.__win.redraw()
+	def _animate(self, time):
+		sleep(time)
+		self._win.redraw()
+	
+	def break_entrance_and_exit(self):
+		entrance = self._cells[0][0]
+		exit = self._cells[-1][-1]
+		entrance.set_wall((0, 1, 1, 1))
+		exit.set_wall((1, 1, 0, 1))
+		entrance.draw("OrangeRed3")
+		self._animate(1.2)
+		exit.draw("OrangeRed3")
+		self._animate(1.2)
 		
