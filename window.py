@@ -4,13 +4,15 @@ from line import Line
 
 class Window:
 	def __init__(self, width: int, height: int):
+		self.width = width
+		self.height = height
 		self.__root = tk.Tk()
-		# self.__root.geometry(f"{width}x{height}")
+		self.__root.geometry(f"{self.width}x{self.height}")
 		self.__root.title("Maze Solver")
-		self.__c = tk.Canvas(self.__root, bg="white", height=height, width=width)
+		self.__canvas = tk.Canvas(self.__root, bg="white", height=self.height, width=self.width)
 		# fill: Stretch the content both horizontally and vertically
 		# expand: Specifies whether the content should be expanded to consume extra space in their container
-		self.__c.pack(fill=tk.BOTH, expand=True)
+		self.__canvas.pack(fill=tk.BOTH, expand=True)
 		self.__running = False
 		# Set callback function for closing window
 		self.__root.protocol("WM_DELETE_WINDOW", self.close)
@@ -29,6 +31,6 @@ class Window:
 		self.__running = False
 		
 	def draw_line(self, line: Line, fill_color: str):
-		line.draw(self.__c, fill_color)
+		line.draw(self.__canvas, fill_color)
 		
 	
