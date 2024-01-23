@@ -37,3 +37,6 @@ class Window:
 	
 	def draw_rectangle(self, rectangle: Rectangle, fill_color: str):
 		rectangle.draw(self.__canvas, fill_color)
+		
+	def recolor_canvas(self, bg_color="plum4"):
+		self.__canvas.configure(bg=bg_color)

@@ -25,20 +25,20 @@ class Cell:
 		self.i = None
 		self.j = None
 	
-	def draw_walls(self, fill_color: str):
+	def draw_walls(self, fill_color: str, width=3):
 		if self._win is None:
 			return
 		
 		if self.has_top_wall:
-			self._win.draw_line(self._get_top_wall(), fill_color)
+			self._win.draw_line(self._get_top_wall(), fill_color, width)
 		if self.has_right_wall:
-			self._win.draw_line(self._get_right_wall(), fill_color)
+			self._win.draw_line(self._get_right_wall(), fill_color, width)
 		if self.has_bottom_wall:
-			self._win.draw_line(self._get_bottom_wall(), fill_color)
+			self._win.draw_line(self._get_bottom_wall(), fill_color, width)
 		if self.has_left_wall:
-			self._win.draw_line(self._get_left_wall(), fill_color)
+			self._win.draw_line(self._get_left_wall(), fill_color, width)
 			
-	def draw(self, fill_color: str, bg_color="white smoke"):
+	def draw(self, fill_color: str, bg_color="white smoke", width=3):
 		if self._win is None:
 			return
 		
@@ -46,15 +46,15 @@ class Cell:
 		                                   Point(self._bottom_right_x, self._bottom_right_y)),
 		                         fill_color=bg_color)
 		if not self.has_top_wall:
-			self._win.draw_line(self._get_top_wall(), bg_color)
+			self._win.draw_line(self._get_top_wall(), bg_color, width)
 		if not self.has_right_wall:
-			self._win.draw_line(self._get_right_wall(), bg_color)
+			self._win.draw_line(self._get_right_wall(), bg_color, width)
 		if not self.has_bottom_wall:
-			self._win.draw_line(self._get_bottom_wall(), bg_color)
+			self._win.draw_line(self._get_bottom_wall(), bg_color, width)
 		if not self.has_left_wall:
-			self._win.draw_line(self._get_left_wall(), bg_color)
+			self._win.draw_line(self._get_left_wall(), bg_color, width)
 			
-		self.draw_walls(fill_color)
+		self.draw_walls(fill_color, width)
 		
 	def _get_top_wall(self):
 		x = Point(self._top_left_x, self._top_left_y)
@@ -87,10 +87,10 @@ class Cell:
 		to_cell = to_cell.get_center()
 		line = Line(from_cell, to_cell)
 		if undo:
-			fill_color = "grey82"
-			width = 2
+			fill_color = "gray20"
+			width = 3
 		else:
-			fill_color = "OrangeRed2"
+			fill_color = "DarkOrange1"
 			width = 3
 		self._win.draw_line(line, fill_color, width)
 	

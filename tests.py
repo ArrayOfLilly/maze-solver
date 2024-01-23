@@ -48,6 +48,20 @@ class Tests(unittest.TestCase):
 					m3._cells[i][j].visited,
 					False,
 				)
+	
+	def test_reset_cells(self):
+		win = Window(800, 600, "white")
+		num_cols = 5
+		num_rows = 5
+		m4 = Maze(win, num_rows, num_cols, 100, 100)
+		m4.break_entrance_and_exit()
+		m4.break_walls()
+		m4.solve()
+		
+		self.assertEqual(
+			m4._cells[i][j].visited,
+			False,
+				)
 		
 		
 if __name__ == "__main__":
