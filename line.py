@@ -1,5 +1,6 @@
-from point import Point
 import tkinter as tk
+
+from point import Point
 
 
 class Line:
@@ -7,6 +8,6 @@ class Line:
 		self.start = start
 		self.end = end
 	
-	def draw(self, canvas: tk.Canvas, fill_color: str):
-		canvas.create_line(self.start.x, self.start.y, self.end.x, self.end.y, fill=fill_color, width=2)
+	def draw(self, canvas: tk.Canvas, fill_color: str, width=3):
+		canvas.create_line(self.start.x, self.start.y, self.end.x, self.end.y, fill=fill_color, width=width)
 		canvas.pack(fill=tk.BOTH, expand=True)

@@ -1,18 +1,15 @@
-from point import Point
-from line import Line
-from window import Window
-from cell import Cell
 from maze import Maze
+from window import Window
 
 
 def main():
-	win = Window(800, 600, "white smoke")
+	win = Window(800, 600, "gold")
 	
-	top_left_corner = Point(100, 100)
-	maze = Maze(win, top_left_corner, 3, 3,100, 100)
+	maze = Maze(win, 12, 18, 40, 40)
 	maze.break_entrance_and_exit()
+	maze.break_walls()
+	
 	win.wait_for_close()
-	
-	
-main()
 
+
+main()
